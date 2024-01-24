@@ -2,9 +2,13 @@ name: monkey-go-lint
 
 on:
   push:
+    paths:
+      - go
     branches: 
       - main
   pull_request:
+    paths:
+      - go
     branches:
       - main
 

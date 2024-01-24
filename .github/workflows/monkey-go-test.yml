@@ -2,9 +2,13 @@ name: monkey-go-test
 
 on:
   push:
+    paths:
+      - go
     branches: 
       - main
   pull_request:
+    paths:
+      - go
     branches:
       - main
 
