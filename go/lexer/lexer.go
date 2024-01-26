@@ -66,7 +66,7 @@ func (l *Lexer) skipWhitespace() {
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
-	fmt.Printf("l.ch = %c\n", l.ch)
+	fmt.Printf("Current l.ch = %c\n", l.ch)
 
 	l.skipWhitespace()
 
@@ -99,12 +99,14 @@ func (l *Lexer) NextToken() token.Token {
 		} else if isDigit(l.ch) {
 			tok.Literal = l.readNumber()
 			tok.Type = token.INT
+			fmt.Printf("tok = %v\n", tok)
+			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
 		}
 	}
 
-	fmt.Printf("tok = %v\n", tok)
+	fmt.Printf("tok = %v\n\n", tok)
 
 	l.readChar()
 	return tok
