@@ -3,12 +3,12 @@ name: monkey-go-test
 on:
   push:
     paths:
-      - go
+      - go/**
     branches: 
       - main
   pull_request:
     paths:
-      - go
+      - go/**
     branches:
       - main
 
