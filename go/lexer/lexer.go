@@ -1,8 +1,6 @@
 package lexer
 
 import (
-	"fmt"
-
 	"github.com/abasnfarah/interpreter/go/token"
 )
 
@@ -74,8 +72,6 @@ func (l *Lexer) skipWhitespace() {
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
-	fmt.Printf("Current l.ch = %c\n", l.ch)
-
 	l.skipWhitespace()
 
 	switch l.ch {
@@ -132,19 +128,15 @@ func (l *Lexer) NextToken() token.Token {
 		if isLetter(l.ch) {
 			tok.Literal = l.readIdentifier()
 			tok.Type = token.LookupIdent(tok.Literal)
-			fmt.Printf("tok = %v\n", tok)
 			return tok
 		} else if isDigit(l.ch) {
 			tok.Literal = l.readNumber()
 			tok.Type = token.INT
-			fmt.Printf("tok = %v\n", tok)
 			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
 		}
 	}
-
-	fmt.Printf("tok = %v\n\n", tok)
 
 	l.readChar()
 	return tok
