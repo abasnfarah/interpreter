@@ -23,6 +23,8 @@ func TestNextToken(t *testing.T) {
 						} else if(x < 10){
 							10 * 5;
 						}
+						5 == 5;
+						5 != 10;
 						`
 
 	tests := []struct {
@@ -65,19 +67,10 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
-		/* Adding test for this case:
-		!-/*5;
-		5 < 10 > 5;
-		if(x > 10){
-			five + ten;
-		} else if(x < 10){
-			10 * 5;
-		}
-		*/
-		{token.NOT, "!"},
+		{token.BANG, "!"},
 		{token.MINUS, "-"},
 		{token.DIVIDE, "/"},
-		{token.MULT, "*"},
+		{token.ASTERISK, "*"},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 		{token.INT, "5"},
@@ -107,10 +100,18 @@ func TestNextToken(t *testing.T) {
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
 		{token.INT, "10"},
-		{token.MULT, "*"},
+		{token.ASTERISK, "*"},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
+		{token.INT, "5"},
+		{token.EQ, "=="},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+		{token.INT, "5"},
+		{token.NOT_EQ, "!="},
+		{token.INT, "10"},
+		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
 

@@ -10,16 +10,16 @@ const (
 	BOOL  = "BOOL"  // true, false
 
 	// Operators
-	ASSIGN = "="
-	PLUS   = "+"
-	MINUS  = "-"
-	DIVIDE = "/"
-	MULT   = "*"
-	LT     = "<"
-	GT     = ">"
-	NOT    = "!"
-	EQ     = "=="
-	NOT_EQ = "!="
+	ASSIGN   = "="
+	PLUS     = "+"
+	MINUS    = "-"
+	DIVIDE   = "/"
+	ASTERISK = "*"
+	LT       = "<"
+	GT       = ">"
+	BANG     = "!"
+	EQ       = "=="
+	NOT_EQ   = "!="
 
 	// Delimiters
 	COMMA     = ","
