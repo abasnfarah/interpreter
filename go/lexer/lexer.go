@@ -87,6 +87,35 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.LBRACE, l.ch)
 	case '}':
 		tok = newToken(token.RBRACE, l.ch)
+	case '-':
+		tok = newToken(token.MINUS, l.ch)
+	/*
+		TODO: add support for
+			MINUS  = "-"
+			DIVIDE = "/"
+			MULT   = "*"
+			LT     = "<"
+			GT     = ">"
+			NOT    = "!"
+			EQ     = "=="
+
+			NOT_EQ = "!="
+			BOOL  = "BOOL"  // true, false
+
+			IF       = "IF"
+			ELSE     = "ELSE"
+			RETURN   = "RETURN"
+	*/
+	case '/':
+		tok = newToken(token.DIVIDE, l.ch)
+	case '*':
+		tok = newToken(token.MULT, l.ch)
+	case '<':
+		tok = newToken(token.LT, l.ch)
+	case '>':
+		tok = newToken(token.GT, l.ch)
+	case '!':
+		tok = newToken(token.NOT, l.ch)
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
