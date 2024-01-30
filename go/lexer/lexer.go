@@ -49,6 +49,14 @@ func (l *Lexer) readIdentifier() string {
 	return l.input[position:l.position]
 }
 
+func (l *Lexer) peekChar() byte {
+	if l.readPosition >= len(l.input) {
+		return 0
+	} else {
+		return l.input[l.readPosition]
+	}
+}
+
 func isLetter(ch byte) bool {
 	return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '_'
 }
@@ -72,7 +80,16 @@ func (l *Lexer) NextToken() token.Token {
 
 	switch l.ch {
 	case '=':
-		tok = newToken(token.ASSIGN, l.ch)
+		if l.peekChar() == '=' {
+			tok.Type = token.EQ
+
+			ch := l.ch
+			l.readChar()
+
+			tok.Literal = string(ch) + string(l.ch)
+		} else {
+			tok = newToken(token.ASSIGN, l.ch)
+		}
 	case '+':
 		tok = newToken(token.PLUS, l.ch)
 	case ',':
@@ -89,33 +106,25 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.RBRACE, l.ch)
 	case '-':
 		tok = newToken(token.MINUS, l.ch)
-	/*
-		TODO: add support for
-			MINUS  = "-"
-			DIVIDE = "/"
-			MULT   = "*"
-			LT     = "<"
-			GT     = ">"
-			NOT    = "!"
-			EQ     = "=="
-
-			NOT_EQ = "!="
-			BOOL  = "BOOL"  // true, false
-
-			IF       = "IF"
-			ELSE     = "ELSE"
-			RETURN   = "RETURN"
-	*/
 	case '/':
 		tok = newToken(token.DIVIDE, l.ch)
 	case '*':
-		tok = newToken(token.MULT, l.ch)
+		tok = newToken(token.ASTERISK, l.ch)
 	case '<':
 		tok = newToken(token.LT, l.ch)
 	case '>':
 		tok = newToken(token.GT, l.ch)
 	case '!':
-		tok = newToken(token.NOT, l.ch)
+		if l.peekChar() == '=' {
+			tok.Type = token.NOT_EQ
+
+			ch := l.ch
+			l.readChar()
+
+			tok.Literal = string(ch) + string(l.ch)
+		} else {
+			tok = newToken(token.BANG, l.ch)
+		}
 	case 0:
 		tok.Literal = ""
 		tok.Type = token.EOF
