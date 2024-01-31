@@ -1,6 +1,6 @@
 # [TITLE]
 
-### Changes Being Done
+### Changes
 
 - loren ipsum
 
