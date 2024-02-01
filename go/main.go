@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/abasnfarah/interpreter/go/repl"
+	"github.com/abasnfarah/monkey-interpreter/go/repl"
 	"go.uber.org/zap"
 )
 

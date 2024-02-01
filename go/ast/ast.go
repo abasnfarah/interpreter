@@ -1,6 +1,6 @@
 package ast
 
-import "github.com/abasnfarah/interpreter/go/token"
+import "github.com/abasnfarah/monkey-interpreter/go/token"
 
 type Node interface {
 	tokenLiteral() string
