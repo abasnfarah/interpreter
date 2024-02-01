@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/abasnfarah/interpreter/go/token"
+	"github.com/abasnfarah/monkey-interpreter/go/token"
 )
 
 func TestNextToken(t *testing.T) {

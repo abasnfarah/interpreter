@@ -1,4 +1,4 @@
-module github.com/abasnfarah/interpreter/go
+module github.com/abasnfarah/monkey-interpreter/go
 
 go 1.21.0
 
