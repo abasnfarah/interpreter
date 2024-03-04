@@ -66,3 +66,4 @@ go.work
 *.exe
 *.out
 *.app
+go/bin/*
