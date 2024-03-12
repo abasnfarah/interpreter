@@ -9,7 +9,12 @@ import (
 	"github.com/abasnfarah/monkey-interpreter/go/token"
 )
 
-const PROMPT = ">> "
+const (
+	PROMPT       = ">> "
+	HELP_MESSAGE = "help - show this help message\n" + "exit - exit the repl\n"
+	HELP         = "help"
+	EXIT         = "exit"
+)
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
@@ -22,8 +27,13 @@ func Start(in io.Reader, out io.Writer) {
 		}
 
 		line := scanner.Text()
-		if line == "exit" {
+		if line == EXIT {
 			return
+		}
+
+		if line == HELP || line == "h" || line == "" {
+			fmt.Fprint(out, HELP_MESSAGE)
+			continue
 		}
 
 		l := lexer.New(line)
